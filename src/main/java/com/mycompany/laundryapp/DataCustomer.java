@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -270,46 +271,61 @@ public class DataCustomer extends javax.swing.JFrame {
 
     private void CetaknotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CetaknotaActionPerformed
 
-    try {
+    int baris = tableTransaksi.getSelectedRow();
 
-        Connection conn = Koneksi.getConnection();
-
-        String sql =
-                "SELECT * FROM transaksi WHERE id=?";
-
-        PreparedStatement pst =
-                conn.prepareStatement(sql);
-
-        pst.setString(1,
-                jTextField1.getText());
-
-        ResultSet rs = pst.executeQuery();
-
-        DefaultTableModel model =
-                (DefaultTableModel) tableTransaksi.getModel();
-
-        model.setRowCount(0);
-
-        while(rs.next()){
-
-            model.addRow(new Object[]{
-                rs.getString("id"),
-                rs.getString("nama_customer"),
-                rs.getString("paket"),
-                rs.getString("berat"),
-                rs.getString("total_biaya"),
-                rs.getString("estimasi"),
-                rs.getString("no_hp"),
-                rs.getString("tanggal_masuk")
-            });
-        }
-
+    if(baris == -1){
+        JOptionPane.showMessageDialog(this,
+                "Pilih data terlebih dahulu!");
+        return;
     }
     
-    catch(Exception e) {
-        JOptionPane.showMessageDialog(this,
-                e.getMessage());
-    }
+    String id = tableTransaksi.getValueAt(baris, 0).toString();
+    String nama = tableTransaksi.getValueAt(baris, 1).toString();
+    String hp = tableTransaksi.getValueAt(baris, 2).toString();
+    String tanggal = tableTransaksi.getValueAt(baris, 3).toString();
+    String paket = tableTransaksi.getValueAt(baris, 4).toString();
+    String harga = tableTransaksi.getValueAt(baris, 5).toString();
+    String berat = tableTransaksi.getValueAt(baris, 6).toString();
+    String total = tableTransaksi.getValueAt(baris, 7).toString();
+    String estimasi = tableTransaksi.getValueAt(baris, 8).toString();
+    
+    String noNota = "NT-" + System.currentTimeMillis();
+
+    String nota =
+        "========================================\n" +
+        "           NOTANYAA SAYANGGG            \n" +
+        "========================================\n\n" +
+            
+        "No Nota       : " + noNota + "\n" +
+
+        "Data Customer\n" +
+        "----------------------------------------\n" +
+        "Nama Customer : " + nama + "\n" +
+        "No HP         : " + hp + "\n" +
+        "Tanggal Masuk : " + tanggal + "\n\n" +
+
+        "Paket Laundry\n" +
+        "----------------------------------------\n" +
+        "Paket         : " + paket + "\n" +
+        "Harga / Kg    : Rp." + harga + "\n" +
+        "Berat Pakaian : " + berat + " Kg\n\n" +
+
+        "Perhitungan\n" +
+        "----------------------------------------\n" +
+        "Total Biaya   : Rp." + total + "\n" +
+        "Estimasi      : " + estimasi + "\n" +
+
+        "========================================\n" +
+        "    TERIMA KASIH BONUS DI KECUP ATMIN   \n" +
+        "========================================";
+    
+    JTextArea area = new JTextArea(nota);
+    area.setEditable(false);
+
+    JOptionPane.showMessageDialog(this,
+            nota,
+            "Nota Laundry",
+            JOptionPane.INFORMATION_MESSAGE);
 
 
         // TODO add your handling code here:
