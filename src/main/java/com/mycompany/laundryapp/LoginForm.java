@@ -77,6 +77,8 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel5.setText("Belum Punya Akun?");
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setForeground(new java.awt.Color(51, 51, 255));
         jButton2.setText("Registrasi");
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
@@ -151,23 +153,22 @@ public class LoginForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     String user = jTextField1.getText();
-    String pass = new String(jPasswordField1.getPassword());
+String pass = new String(jPasswordField1.getPassword());
 
-    if(user.equals("danar") && pass.equals("123")) {
+if(user.equals("admin1") && pass.equals("123")) {
 
-    JOptionPane.showMessageDialog(this,"Login Berhasil");
+    JOptionPane.showMessageDialog(this,
+            "Login Admin Berhasil");
 
     new MenuUtama().setVisible(true);
     this.dispose();
 
-    } 
-    
-    else {
+} else {
 
-    JOptionPane.showMessageDialog(this,"Login Gagal");
-    
-    }
-    
+    JOptionPane.showMessageDialog(this,
+            "Username atau Password Salah");
+
+}
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

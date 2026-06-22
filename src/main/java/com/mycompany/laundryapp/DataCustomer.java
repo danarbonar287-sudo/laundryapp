@@ -13,6 +13,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextArea;
 
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 /**
  *
  * @author danarbonarbuwono
@@ -54,7 +59,7 @@ public class DataCustomer extends javax.swing.JFrame {
 
         ResultSet rs =
             st.executeQuery(
-            "SELECT * FROM transaksi");
+            "SELECT * FROM transaksi ORDER BY id DESC");
 
         while(rs.next()) {
 
@@ -292,42 +297,78 @@ public class DataCustomer extends javax.swing.JFrame {
     String noNota = "NT-" + System.currentTimeMillis();
 
     String nota =
-        "========================================\n" +
-        "           NOTANYAA SAYANGGG            \n" +
-        "========================================\n\n" +
-            
-        "No Nota       : " + noNota + "\n" +
+            "======================\n" +
+            "       SARI LAUNDRY      \n" +
+            "======================\n\n" +
 
-        "Data Customer\n" +
-        "----------------------------------------\n" +
-        "Nama Customer : " + nama + "\n" +
-        "No HP         : " + hp + "\n" +
-        "Tanggal Masuk : " + tanggal + "\n\n" +
+            "No Nota : " + noNota + "\n\n" +
 
-        "Paket Laundry\n" +
-        "----------------------------------------\n" +
-        "Paket         : " + paket + "\n" +
-        "Harga / Kg    : Rp." + harga + "\n" +
-        "Berat Pakaian : " + berat + " Kg\n\n" +
+            "Data Customer\n" +
+            "------------------------------\n" +
+            "Nama    : " + nama + "\n" +
+            "No HP   : " + hp + "\n" +
+            "Tanggal : " + tanggal + "\n\n" +
 
-        "Perhitungan\n" +
-        "----------------------------------------\n" +
-        "Total Biaya   : Rp." + total + "\n" +
-        "Estimasi      : " + estimasi + "\n" +
+            "Paket Laundry\n" +
+            "------------------------------\n" +
+            "Paket   : " + paket + "\n" +
+            "Harga   : Rp." + harga + "\n" +
+            "Berat   : " + berat + " Kg\n\n" +
 
-        "========================================\n" +
-        "    TERIMA KASIH BONUS DI KECUP ATMIN   \n" +
-        "========================================";
+            "Perhitungan\n" +
+            "------------------------------\n" +
+            "Total   : Rp." + total + "\n" +
+            "Estimasi: " + estimasi + "\n\n" +
+
+            "======================\n" +
+            "   TERIMA KASIH KAK :)    \n" +
+            "======================";
     
-    JTextArea area = new JTextArea(nota);
-    area.setEditable(false);
+    Object[] options = {"Kirim WA", "Tutup"};
 
-    JOptionPane.showMessageDialog(this,
+    int pilihan = JOptionPane.showOptionDialog(
+            this,
             nota,
             "Nota Laundry",
-            JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            null,
+            options,
+            options[0]);
 
+    if (pilihan == 0) {
 
+        try {
+
+            String nomorWA = hp;
+
+            if (nomorWA.startsWith("0")) {
+                nomorWA = "62" + nomorWA.substring(1);
+            }
+
+            String pesan = URLEncoder.encode(
+                    nota,
+                    StandardCharsets.UTF_8);
+
+            String url =
+                    "https://wa.me/" +
+                    nomorWA +
+                    "?text=" +
+                    pesan;
+
+            Desktop.getDesktop().browse(
+                    new URI(url));
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Gagal membuka WhatsApp!\n" +
+                    e.getMessage());
+
+       }
+    
+    }
         // TODO add your handling code here:
     }//GEN-LAST:event_CetaknotaActionPerformed
 

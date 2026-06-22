@@ -52,7 +52,6 @@ public class MenuUtama extends javax.swing.JFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(457, 364));
 
         jLabel1.setFont(new java.awt.Font("Kokonor", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
