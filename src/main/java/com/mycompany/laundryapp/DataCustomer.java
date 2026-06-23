@@ -31,6 +31,8 @@ public class DataCustomer extends javax.swing.JFrame {
      */
     public DataCustomer() {
         initComponents();
+        
+        
         tampilData();
     }
     
@@ -48,6 +50,9 @@ public class DataCustomer extends javax.swing.JFrame {
     model.addColumn("Berat");
     model.addColumn("Total");
     model.addColumn("Estimasi");
+    model.addColumn("Maks Ambil");
+    model.addColumn("Status Pengambilan");
+    model.addColumn("Status Pembayaran");
 
     try {
 
@@ -64,7 +69,7 @@ public class DataCustomer extends javax.swing.JFrame {
         while(rs.next()) {
 
             model.addRow(new Object[] {
-
+                
                 rs.getInt("id"),
                 rs.getString("nama_customer"),
                 rs.getString("no_hp"),
@@ -73,9 +78,12 @@ public class DataCustomer extends javax.swing.JFrame {
                 rs.getInt("harga_perkg"),
                 rs.getDouble("berat"),
                 rs.getDouble("total_biaya"),
-                rs.getString("estimasi")
-
-            });
+                rs.getString("estimasi"),
+                rs.getString("maks_pengambilan"),
+                rs.getString("status_pengambilan"),
+                rs.getString("status_pembayaran")
+                    
+        });
 
         }
 
@@ -110,6 +118,8 @@ public class DataCustomer extends javax.swing.JFrame {
         Cetaknota = new javax.swing.JButton();
         Kembali = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,13 +132,13 @@ public class DataCustomer extends javax.swing.JFrame {
 
         tableTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nama Customer", "Paket", "Berat", "Total biaya", "Estimasi", "No HP", "Tanggal masuk"
+                "ID", "Nama Customer", "Paket", "Berat", "Total biaya", "Estimasi", "No HP", "Tanggal masuk", "Maks pengambilan", "Status pengambilan", "Status pembayaran"
             }
         ));
         jScrollPane1.setViewportView(tableTransaksi);
@@ -149,38 +159,44 @@ public class DataCustomer extends javax.swing.JFrame {
         jTextField1.setText("Cari Nota");
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
+        jButton1.setText("Ubah Status Pembayaran");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+
+        jButton2.setText("Ubah Status Pengambilan");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(199, 199, 199)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cetaknota, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(230, 230, 230)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(350, 350, 350)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Cetaknota, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(322, 322, 322)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 350, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(251, 251, 251))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 993, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(431, 431, 431)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(401, 401, 401)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(10, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(318, 318, 318)
+                .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,18 +205,22 @@ public class DataCustomer extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addGap(43, 43, 43)
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cetaknota)
                     .addComponent(Hapus)
                     .addComponent(Refresh))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(Kembali)
-                .addGap(22, 22, 22))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -293,36 +313,45 @@ public class DataCustomer extends javax.swing.JFrame {
     String berat = tableTransaksi.getValueAt(baris, 6).toString();
     String total = tableTransaksi.getValueAt(baris, 7).toString();
     String estimasi = tableTransaksi.getValueAt(baris, 8).toString();
+    String maksAmbil = tableTransaksi.getValueAt(baris, 9).toString();
+    String statusPengambilan = tableTransaksi.getValueAt(baris, 10).toString();
+    String statusPembayaran = tableTransaksi.getValueAt(baris, 11).toString();
     
     String noNota = "NT-" + System.currentTimeMillis();
 
     String nota =
-            "======================\n" +
-            "       SARI LAUNDRY      \n" +
-            "======================\n\n" +
+        "==============================\n" +
+        "         SARI LAUNDRY         \n" +
+        "==============================\n\n" +
 
-            "No Nota : " + noNota + "\n\n" +
+        "No Nota : " + noNota + "\n\n" +
 
-            "Data Customer\n" +
-            "------------------------------\n" +
-            "Nama    : " + nama + "\n" +
-            "No HP   : " + hp + "\n" +
-            "Tanggal : " + tanggal + "\n\n" +
+        "Data Customer\n" +
+        "------------------------------\n" +
+        "Nama    : " + nama + "\n" +
+        "No HP   : " + hp + "\n" +
+        "Tanggal : " + tanggal + "\n\n" +
 
-            "Paket Laundry\n" +
-            "------------------------------\n" +
-            "Paket   : " + paket + "\n" +
-            "Harga   : Rp." + harga + "\n" +
-            "Berat   : " + berat + " Kg\n\n" +
+        "Paket Laundry\n" +
+        "------------------------------\n" +
+        "Paket   : " + paket + "\n" +
+        "Harga   : Rp." + harga + "\n" +
+        "Berat   : " + berat + " Kg\n\n" +
 
-            "Perhitungan\n" +
-            "------------------------------\n" +
-            "Total   : Rp." + total + "\n" +
-            "Estimasi: " + estimasi + "\n\n" +
+        "Perhitungan\n" +
+        "------------------------------\n" +
+        "Total   : Rp." + total + "\n" +
+        "Estimasi: " + estimasi + "\n\n" +
 
-            "======================\n" +
-            "   TERIMA KASIH KAK :)    \n" +
-            "======================";
+        "Informasi Pengambilan\n" +
+        "------------------------------\n" +
+        "Maks Ambil : " + maksAmbil + "\n" +
+        "Status Ambil : " + statusPengambilan + "\n" +
+        "Status Bayar : " + statusPembayaran + "\n\n" +
+
+        "==============================\n" +
+        "      TERIMA KASIH KAK :)     \n" +
+        "==============================";
     
     Object[] options = {"Kirim WA", "Tutup"};
 
@@ -372,6 +401,153 @@ public class DataCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CetaknotaActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+    int baris = tableTransaksi.getSelectedRow();
+
+    if(baris == -1){
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Pilih data terlebih dahulu!");
+
+        return;
+    }
+
+    String id =
+            tableTransaksi.getValueAt(
+                    baris, 0).toString();
+
+    String[] pilihan = {
+        "Belum Diambil",
+        "Sudah Diambil"
+    };
+
+    String statusBaru =
+            (String) JOptionPane.showInputDialog(
+                    this,
+                    "Pilih Status Pengambilan",
+                    "Ubah Status Pengambilan",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    pilihan,
+                    pilihan[0]);
+
+    if(statusBaru == null){
+        return;
+    }
+
+    try {
+
+        Connection conn =
+                Koneksi.getConnection();
+
+        String sql =
+                "UPDATE transaksi "
+                + "SET status_pengambilan=? "
+                + "WHERE id=?";
+
+        PreparedStatement pst =
+                conn.prepareStatement(sql);
+
+        pst.setString(1, statusBaru);
+        pst.setString(2, id);
+
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Status pengambilan berhasil diperbarui");
+
+        tampilData();
+
+    }
+
+    catch(Exception e){
+
+        JOptionPane.showMessageDialog(
+                this,
+                e.getMessage());
+
+    }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+
+    int baris = tableTransaksi.getSelectedRow();
+
+    if(baris == -1){
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Pilih data terlebih dahulu!");
+
+        return;
+    }
+
+    String id =
+            tableTransaksi.getValueAt(
+                    baris, 0).toString();
+
+    String[] pilihan = {
+        "Belum Lunas",
+        "Lunas"
+    };
+
+    String statusBaru =
+            (String) JOptionPane.showInputDialog(
+                    this,
+                    "Pilih Status Pembayaran",
+                    "Ubah Status",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    pilihan,
+                    pilihan[0]);
+
+    if(statusBaru == null){
+        return;
+    }
+
+    try {
+
+        Connection conn =
+                Koneksi.getConnection();
+
+        String sql =
+                "UPDATE transaksi "
+                + "SET status_pembayaran=? "
+                + "WHERE id=?";
+
+        PreparedStatement pst =
+                conn.prepareStatement(sql);
+
+        pst.setString(1, statusBaru);
+        pst.setString(2, id);
+
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Status pembayaran berhasil diperbarui");
+
+        tampilData();
+
+    }
+
+    catch(Exception e){
+
+        JOptionPane.showMessageDialog(
+                this,
+                e.getMessage());
+
+    }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -402,6 +578,8 @@ public class DataCustomer extends javax.swing.JFrame {
     private javax.swing.JButton Hapus;
     private javax.swing.JButton Kembali;
     private javax.swing.JButton Refresh;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

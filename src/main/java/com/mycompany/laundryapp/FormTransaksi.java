@@ -7,6 +7,7 @@ package com.mycompany.laundryapp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import java.time.LocalDate;
 
 /**
  *
@@ -24,6 +25,14 @@ public class FormTransaksi extends javax.swing.JFrame {
             java.time.LocalDate.now().toString()
         );
         
+        jComboBoxStatus.setModel(
+        new javax.swing.DefaultComboBoxModel<>(
+            new String[] {
+                "Belum Lunas",
+                "Lunas"
+            }
+        )
+    );
         
     }
 
@@ -36,6 +45,7 @@ public class FormTransaksi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -58,6 +68,10 @@ public class FormTransaksi extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBoxStatus = new javax.swing.JComboBox<>();
+
+        jButton4.setText("jButton4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 0));
@@ -115,6 +129,11 @@ public class FormTransaksi extends javax.swing.JFrame {
         jButton3.setText("KEMBALI");
         jButton3.addActionListener(this::jButton3ActionPerformed);
 
+        jLabel10.setText("Status Pembayaran");
+
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Lunas", "Lunas" }));
+        jComboBoxStatus.addActionListener(this::jComboBoxStatusActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,32 +146,33 @@ public class FormTransaksi extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField2)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField6)
-                            .addComponent(jFormattedTextField1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jTextField2)
+                                .addComponent(jLabel6)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9)
+                                .addComponent(jTextField6)
+                                .addComponent(jFormattedTextField1)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(95, Short.MAX_VALUE))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10)
+                            .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,12 +218,16 @@ public class FormTransaksi extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -218,11 +242,15 @@ public class FormTransaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
+
+        
     String paket = jComboBox1.getSelectedItem().toString();
 
 int harga = 0;
+int hariEstimasi =0;
 String estimasi = "";
+String statusPembayaran = "";
+
 
 if(paket.equals("Cuci + Setrika")) {
     harga = 5000;
@@ -238,19 +266,19 @@ else if(paket.equals("Setrika")) {
 }
 else if(paket.equals("Cuci Selimut")) {
     harga = 6000;
-    estimasi = "5 Hari";
+    estimasi = "3 Hari";
 }
 else if(paket.equals("Cuci Spray")) {
     harga = 5000;
-    estimasi = "4 Hari";
+    estimasi = "2 Hari";
 }
 else if(paket.equals("Cuci Boneka")) {
     harga = 5000;
-    estimasi = "4 Hari";
+    estimasi = "2 Hari";
 }
 else if(paket.equals("Cuci Bed Cover")) {
     harga = 10000;
-    estimasi = "5 Hari";
+    estimasi = "3 Hari";
 }
 else if(paket.equals("Cuci Sepatu")) {
     harga = 7000;
@@ -258,12 +286,37 @@ else if(paket.equals("Cuci Sepatu")) {
 }
 else if(paket.equals("Cuci Tas")) {
     harga = 5000;
-    estimasi = "3 Hari";
+    estimasi = "1 Hari";
 }
 else if(paket.equals("Cuci Karpet")) {
     harga = 10000;
-    estimasi = "7 Hari";
+    estimasi = "5 Hari";
 }
+    
+if(estimasi.equals("2 Hari")) {
+    hariEstimasi = 2;
+}
+else if(estimasi.equals("3 Hari")) {
+    hariEstimasi = 3;
+}
+else if(estimasi.equals("4 Hari")) {
+    hariEstimasi = 4;
+}
+else if(estimasi.equals("5 Hari")) {
+    hariEstimasi = 5;
+}
+else if(estimasi.equals("7 Hari")) {
+    hariEstimasi = 7;
+}
+
+LocalDate tanggalMasuk =
+        LocalDate.parse(jFormattedTextField1.getText());
+
+LocalDate tanggalSelesai =
+        tanggalMasuk.plusDays(hariEstimasi);
+
+LocalDate maksPengambilan =
+        tanggalSelesai.plusMonths(1);
 
 jTextField4.setText(String.valueOf(harga));
 
@@ -291,11 +344,24 @@ jTextField3.setText(estimasi);
 
     
     try {
+        
 
     Connection conn = Koneksi.getConnection();
+    
+    LocalDate tanggalMasuk =
+        LocalDate.parse(jFormattedTextField1.getText());
+
+    int hariEstimasi = Integer.parseInt(
+            jTextField3.getText().split(" ")[0]);
+
+    LocalDate tanggalSelesai =
+            tanggalMasuk.plusDays(hariEstimasi);
+
+    LocalDate maksPengambilan =
+            tanggalSelesai.plusMonths(1);
 
     String sql =
-    "INSERT INTO transaksi(nama_customer,no_hp,tanggal_masuk,paket,harga_perkg,berat,total_biaya,estimasi) VALUES (?,?,?,?,?,?,?,?)";
+    "INSERT INTO transaksi(nama_customer,no_hp,tanggal_masuk,paket,harga_perkg,berat,total_biaya,estimasi,maks_pengambilan,status_pengambilan,status_pembayaran) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
     PreparedStatement pst =
             conn.prepareStatement(sql);
@@ -308,7 +374,10 @@ jTextField3.setText(estimasi);
     pst.setDouble(6, Double.parseDouble(jTextField2.getText())); // berat
     pst.setDouble(7, Double.parseDouble(jTextField5.getText())); // total
     pst.setString(8, jTextField3.getText()); // estimasi
-
+    pst.setDate(9, java.sql.Date.valueOf(maksPengambilan));
+    pst.setString(10, "Belum Diambil");
+    pst.setString(11, jComboBoxStatus.getSelectedItem().toString());
+   
     pst.executeUpdate();
 
     JOptionPane.showMessageDialog(this,
@@ -362,6 +431,10 @@ catch(Exception e) {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jComboBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxStatusActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,9 +464,12 @@ catch(Exception e) {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxStatus;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

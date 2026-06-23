@@ -155,7 +155,7 @@ public class LoginForm extends javax.swing.JFrame {
     String user = jTextField1.getText();
 String pass = new String(jPasswordField1.getPassword());
 
-if(user.equals("admin1") && pass.equals("123")) {
+if(user.equals("admin") && pass.equals("123")) {
 
     JOptionPane.showMessageDialog(this,
             "Login Admin Berhasil");
